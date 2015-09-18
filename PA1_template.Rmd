@@ -69,10 +69,14 @@ num_of_Missing_Values <- length(which(is.na(Data_activity$steps)))
 
 ##### 2. Devise a strategy for filling in all of the missing values in the dataset.
 ##### 3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
+
+##### Impute missing value with mean values from steps data by using function impute.
+
 ```{r}
 Imputed_Data_activity <- Data_activity
 Imputed_Data_activity$steps <- impute(Data_activity$steps, fun=mean)
 ```
+
 
 
 ##### 4. Make a histogram of the total number of steps taken each day 
@@ -88,6 +92,13 @@ Median_Imputed_steps_By_Day <- median(Imputed_steps_By_Day)
 ```
 * Mean (Imputed) = `r Mean_Imputed_steps_By_Day`
 * Median (Imputed) =  `r Median_Imputed_steps_By_Day`
+
+
+
+* Mean and median values are higher after imputing missing data. The reason is that in the original data, there are some days with `steps` values `NA` for any `interval`. The total number of steps taken in such days are set to 0s by  default. However, after replacing missing `steps` values with the mean `steps` of associated `interval` value, these 0 values are removed from the histogram of total number of steps taken each day.
+
+
+
 
 
 ----
